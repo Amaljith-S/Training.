@@ -1,26 +1,20 @@
-
 import re
-dic={'username':'Amaljith','password':'Samaljith@95', 'email':"amaljith95@gmail.com"}
-
+dic={'username':'Amalj$ith','password':'Samaljith@95', 'email':"amaljith21@gmail.com"}
 user=[value for value in dic.values()][0]
-match=re.search(r'[A-Z]\w+',user)
-if match:
-    I1=(match.group())
-    ID1=I1[0]
-    
-pswd=[value for value in dic.values()][1]    
-match=re.search(r'.+',pswd)
-if match:
-    I2=match.group()
-    ID2=I2[0]
-
+pswd=[value for value in dic.values()][1]
 mail=[value for value in dic.values()][2] 
-match=re.search(r'\w+@\w+',mail)
-if match:
-    I3=match.group()
-    ID3=I3[0]
-    
-print("The user Id is",(ID1+ID2+ID3))
-    
-# data2="".join(dic.values())
-# print(data2)
+match=re.search(r'. ^ @ $ * + ? { [ ] \ | ( )',user)
+match2=re.search(r'[A-Z]\w+',user)
+match3=re.search(r'.+',pswd)
+match4=re.search(r'[a-z0-9]@.',mail)
+if not match and match2:
+    if match3 and len(pswd)>=8:
+        if match4:
+            print("The User Id is",user[0]+pswd[0]+mail[0])
+        else:
+            print("Invalid email address")    
+    else:
+        print("Invalid password syntax")
+
+else:
+    print("Invalid user name")   
